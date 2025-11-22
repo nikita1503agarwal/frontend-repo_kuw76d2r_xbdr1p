@@ -36,14 +36,14 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-10 flex items-center justify-center gap-4 lg:justify-start"
           >
-            <button className="group relative rounded-2xl px-6 py-3 text-sm font-semibold text-white">
+            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="group relative rounded-2xl px-6 py-3 text-sm font-semibold text-white">
               <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 opacity-90 transition group-hover:opacity-100" />
               <span className="absolute inset-0 rounded-2xl blur-xl bg-cyan-500/40 group-hover:bg-cyan-400/60" />
               <span className="relative z-10">Preorder Now</span>
-            </button>
-            <button className="rounded-2xl border border-cyan-400/30 bg-white/5 px-6 py-3 text-sm font-semibold text-cyan-100 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur hover:border-cyan-300/60 hover:text-white">
+            </motion.button>
+            <motion.a href="#features" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="rounded-2xl border border-cyan-400/30 bg-white/5 px-6 py-3 text-sm font-semibold text-cyan-100 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur hover:border-cyan-300/60 hover:text-white">
               See Features
-            </button>
+            </motion.a>
           </motion.div>
 
           <div className="mt-8 flex items-center justify-center gap-6 lg:justify-start">
@@ -60,17 +60,38 @@ export default function Hero() {
         {/* 3D scene / mockup */}
         <div className="relative mx-auto mt-16 w-full max-w-3xl rounded-3xl border border-cyan-400/10 bg-slate-900/40 p-2 shadow-[0_0_80px_rgba(0,255,255,0.12)] backdrop-blur-lg lg:mt-0 lg:flex-auto">
           <div className="aspect-[16/10] overflow-hidden rounded-2xl">
-            {/* Fallback: gradient bottle illustration */}
-            <div className="relative h-full w-full bg-gradient-to-b from-slate-800 to-slate-900">
-              <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
+            {/* Subtle animated gradient fallback */}
+            <motion.div
+              initial={{ scale: 1 }}
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative h-full w-full bg-gradient-to-b from-slate-800 to-slate-900"
+            >
+              <motion.div
+                aria-hidden
+                initial={{ opacity: 0.6 }}
+                animate={{ opacity: [0.4, 0.7, 0.4], y: [0, -10, 0] }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-3xl"
+              />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative h-72 w-28 rounded-[2rem] border border-cyan-400/30 bg-gradient-to-b from-slate-700/60 to-slate-900/60 shadow-[inset_0_0_30px_rgba(255,255,255,0.06),0_30px_100px_rgba(0,255,255,0.12)]">
+                <motion.div
+                  initial={{ y: 0 }}
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative h-72 w-28 rounded-[2rem] border border-cyan-400/30 bg-gradient-to-b from-slate-700/60 to-slate-900/60 shadow-[inset_0_0_30px_rgba(255,255,255,0.06),0_30px_100px_rgba(0,255,255,0.12)]"
+                >
                   <div className="absolute -top-2 left-1/2 h-10 w-16 -translate-x-1/2 rounded-b-2xl border border-cyan-400/30 bg-slate-800/80" />
                   <div className="absolute inset-x-2 top-8 h-10 rounded-xl bg-slate-900/80 shadow-inner" />
-                  <div className="absolute inset-x-3 bottom-6 h-28 rounded-xl bg-gradient-to-b from-cyan-500/30 to-transparent" />
-                </div>
+                  <motion.div
+                    initial={{ opacity: 0.5 }}
+                    animate={{ opacity: [0.4, 0.9, 0.4] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute inset-x-3 bottom-6 h-28 rounded-xl bg-gradient-to-b from-cyan-500/30 to-transparent"
+                  />
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
             {/* Optional: Spline scene, commented since external asset may not exist */}
             {/* <Spline scene="https://prod.spline.design/your-scene-url/scene.splinecode" /> */}
           </div>

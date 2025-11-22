@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Features from './components/Features'
@@ -30,8 +31,18 @@ function App() {
 
       {/* floating orbs */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute left-20 top-40 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute right-20 bottom-40 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+        <motion.div
+          initial={{ y: 0, opacity: 0.85 }}
+          animate={{ y: [0, -10, 0], opacity: [0.85, 1, 0.85] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute left-20 top-40 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl"
+        />
+        <motion.div
+          initial={{ y: 0, opacity: 0.85 }}
+          animate={{ y: [0, 12, 0], opacity: [0.85, 1, 0.85] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+          className="absolute right-20 bottom-40 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"
+        />
       </div>
     </div>
   )

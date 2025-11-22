@@ -1,4 +1,5 @@
 import { Star } from "lucide-react"
+import { motion } from "framer-motion"
 
 const testimonials = [
   {
@@ -19,10 +20,18 @@ export default function Testimonials() {
   return (
     <section className="relative py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">Loved by Early Adopters</h2>
+        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center text-3xl font-bold text-white sm:text-4xl">Loved by Early Adopters</motion.h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t) => (
-            <div key={t.name} className="relative overflow-hidden rounded-2xl border border-cyan-400/15 bg-slate-900/60 p-6 shadow-[0_0_60px_rgba(0,255,255,0.08)]">
+          {testimonials.map((t, idx) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: idx * 0.06 }}
+              whileHover={{ y: -6 }}
+              className="relative overflow-hidden rounded-2xl border border-cyan-400/15 bg-slate-900/60 p-6 shadow-[0_0_60px_rgba(0,255,255,0.08)]"
+            >
               <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-cyan-500/10 blur-2xl" />
               <div className="flex items-center gap-1 text-cyan-300">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -31,7 +40,7 @@ export default function Testimonials() {
               </div>
               <p className="mt-3 text-cyan-100/90">{t.text}</p>
               <p className="mt-4 text-sm font-semibold text-white">{t.name}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
